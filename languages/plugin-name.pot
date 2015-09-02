@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PluginName\n"
 "Report-Msgid-Bugs-To: https://github.com/seb86/WordPress-Plugin-Boilerplate/"
 "issues\n"
-"POT-Creation-Date: 2015-09-01 23:09+0200\n"
+"POT-Creation-Date: 2015-09-02 19:52+0200\n"
 "PO-Revision-Date: 2015-03-22 15:27+0100\n"
 "Last-Translator: WordPress Plugin Boilerplate <mailme@sebastiendumont.com>\n"
 "Language-Team: WP-Translations <wpt@wp-translations.org>\n"
@@ -22,18 +22,18 @@ msgstr ""
 "X-Textdomain-Support: yes\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: includes/admin/class-plugin-name-admin-notices.php:110
+#: includes/admin/class-plugin-name-admin-notices.php:111
 msgid "Action failed. Please refresh the page and retry."
 msgstr ""
 
-#: includes/admin/class-plugin-name-admin-notices.php:114 plugin-name.php:214
-#: plugin-name.php:226
+#: includes/admin/class-plugin-name-admin-notices.php:115 plugin-name.php:213
+#: plugin-name.php:225
 msgid "Cheatin&#8217; huh?"
 msgstr ""
 
-#: includes/admin/class-plugin-name-admin-notices.php:160
+#: includes/admin/class-plugin-name-admin-notices.php:161
 #, php-format
 msgid ""
 "Sorry, %s requires WordPress %s or higher. Please upgrade your WordPress "
-"setup"
+"setup."
 msgstr ""

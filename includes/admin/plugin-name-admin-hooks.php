@@ -2,7 +2,7 @@
 /**
  * PluginName Admin Hooks
  *
- * @todo     Place your hooks for the functions used in the administration side of the plugin.
+ * @todo     Place your hooks for functions used in the administration side of the site.
  * @author   Your Name / Your Company Name
  * @category Core
  * @package  PluginName/Admin/Hooks

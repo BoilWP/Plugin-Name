@@ -1,6 +1,6 @@
-BoilWP WordPress Plugin Boilerplate
+PluginName
 
-Copyright 2015 by Sebastien Dumont.
+Copyright 2015 by AuthorsName.
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by

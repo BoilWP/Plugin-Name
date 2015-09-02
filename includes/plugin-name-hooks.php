@@ -2,7 +2,7 @@
 /**
  * PluginName Hooks
  *
- * @todo     Place your hooks for the functions used in the frontend for the plugin.
+ * @todo     Place your hooks for functions used in the frontend of the site.
  * @author   Your Name / Your Company Name
  * @category Core
  * @package  PluginName/Hooks

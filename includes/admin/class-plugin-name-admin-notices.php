@@ -47,6 +47,7 @@ if ( ! class_exists( 'Plugin_Name_Admin_Notices' ) ) {
 
 			/** Checks that the WordPress setup meets the plugin requirements. **/
 			if ( ! version_compare( $wp_version, Plugin_Name()->wp_version_min, '>=' ) ) {
+				deactivate_plugins( plugin_basename( PLUGIN_NAME_FILE ) );
 				self::add_notice( 'require' );
 				return false;
 			}
@@ -147,7 +148,7 @@ if ( ! class_exists( 'Plugin_Name_Admin_Notices' ) ) {
 		 * @since  1.0.0
 		 */
 		public function the_notice( $notice_type, $message ) {
-			 return '<div id="message" class="' . $notice_type . ' plugin-name-message">' . $message . '</div>';
+			 return '<div id="message" class="' . $notice_type . ' plugin-name-message"><p>' . $message . '</p></div>';
 		}
 
 		/**
@@ -157,7 +158,7 @@ if ( ! class_exists( 'Plugin_Name_Admin_Notices' ) ) {
 		 * @since  1.0.0
 		 */
 		public function requirement_notice() {
-			echo the_notice( 'error', sprintf( __('Sorry, %s requires WordPress %s or higher. Please upgrade your WordPress setup', 'wordpress-plugin-boilerplate-light'), Plugin_Name()->name, Plugin_Name()->wp_version_min ) );
+			echo self::the_notice( 'error', sprintf( __( 'Sorry, %s requires WordPress %s or higher. Please upgrade your WordPress setup.', 'plugin-name'), Plugin_Name()->name, Plugin_Name()->wp_version_min ) );
 		} // END display_req_notice()
 
 		/**
@@ -169,7 +170,7 @@ if ( ! class_exists( 'Plugin_Name_Admin_Notices' ) ) {
 		 */
 		public function install_notice() {
 			$install_notice = include_once( 'views/notices/html-notice-install.php' );
-			echo the_notice( 'updated', $install_notice );
+			echo self::the_notice( 'updated', $install_notice );
 		}
 
 	} // END Plugin_Name_Admin_Notices class.

@@ -76,7 +76,7 @@ if ( ! class_exists( 'Plugin_Name' ) ) {
 		public $plugin_slug = 'plugin_name';
 
 		/**
-		 * The PluginName.
+		 * PluginName.
 		 *
 		 * @todo   Rename the plugin name to your own.
 		 * @var    string
@@ -169,8 +169,7 @@ if ( ! class_exists( 'Plugin_Name' ) ) {
 		/**
 		 * Setup Constants
 		 *
-		 * @todo   1. Change 'PLUGIN_NAME' to the name of the plugin in CAPITAL LETTERS.
-		 * @todo   2. Change 'plugin-name' with the plugin slug of your plugin on "WordPress.org"
+		 * @todo   Change 'PLUGIN_NAME' to the name of the plugin in CAPITAL LETTERS.
 		 * @access private
 		 * @since  1.0.0
 		 */

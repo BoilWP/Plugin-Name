@@ -30,4 +30,5 @@ if ( ! function_exists( 'plugin_name_is_ajax' ) ) {
 
 		return ( isset( $_SERVER['HTTP_X_REQUESTED_WITH'] ) && strtolower( $_SERVER['HTTP_X_REQUESTED_WITH'] ) == 'xmlhttprequest' ) ? true : false;
 	} // END plugin_name_is_ajax()
-}
+
+} // END if function plugin_name_is_ajax() exist

@@ -24,7 +24,7 @@ if ( ! class_exists( 'Plugin_Name_Install' ) ) {
 		 * @access public
 		 * @since  1.0.0
 		 */
-		public function __construct() {
+		public function init() {
 			add_action( 'admin_init', array( $this, 'check_version' ), 5 );
 		} // END __construct()
 
@@ -72,4 +72,9 @@ if ( ! class_exists( 'Plugin_Name_Install' ) ) {
 
 } // END if class exists.
 
-return new Plugin_Name_Install();
+function Plugin_Name_Install() {
+	return new Plugin_Name_Install();
+}
+
+// Run Install
+Plugin_Name_Install()->init();
