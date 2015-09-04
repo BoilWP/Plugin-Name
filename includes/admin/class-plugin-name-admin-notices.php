@@ -9,6 +9,11 @@
  * @license  GPL-2.0+
  */
 
+/**
+ * This class was forked from the plugin called
+ * WooCommerce with some alterations.
+ */
+
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
 if ( ! class_exists( 'Plugin_Name_Admin_Notices' ) ) {
@@ -28,6 +33,7 @@ if ( ! class_exists( 'Plugin_Name_Admin_Notices' ) ) {
 		private $core_notices = array(
 			'require' => 'requirement_notice',
 			'install' => 'install_notice',
+			'update'  => 'update_notice',
 		);
 
 		/**
@@ -46,11 +52,20 @@ if ( ! class_exists( 'Plugin_Name_Admin_Notices' ) ) {
 			}
 
 			/** Checks that the WordPress setup meets the plugin requirements. **/
-			if ( ! version_compare( $wp_version, Plugin_Name()->wp_version_min, '>=' ) ) {
+			if ( ! version_compare( $wp_version, Plugin_Name::$wp_version_min, '>=' ) ) {
+
+				// Deactivate the plugin.
 				deactivate_plugins( plugin_basename( PLUGIN_NAME_FILE ) );
+
+				// Show a notice to the administrator user.
 				self::add_notice( 'require' );
-				return false;
+
+				// Return nothing else.
+				return;
 			}
+
+			// If all is OK then remove the requirement notice.
+			//self::remove_notice( 'require' );
 		} // END __construct()
 
 		 /**
@@ -131,9 +146,12 @@ if ( ! class_exists( 'Plugin_Name_Admin_Notices' ) ) {
 			$notices = get_option( 'plugin_name_admin_notices', array() );
 
 			if ( $notices ) {
-				wp_enqueue_style( 'plugin-name-activation', plugins_url(  '/admin/assets/css/activation.css', PLUGIN_NAME_FILE ) );
+				plugin_name_load_file( 'plugin-name-activation', '/includes/admin/assets/css/activation' . PLUGIN_NAME_SCRIPT_MODE . '.css' );
 				foreach ( $notices as $notice ) {
 					if ( ! empty( $this->core_notices[ $notice ] ) && apply_filters( 'plugin_name_show_admin_notice', true, $notice ) ) {
+						if ( $notice == 'update' ) {
+							plugin_name_load_file( PLUGIN_NAME_SLUG . '_admin_update_script', '/includes/admin/assets/js/update.js', true, array( 'jquery' ), '1.0.0' );
+						}
 						add_action( 'admin_notices', array( $this, $this->core_notices[ $notice ] ) );
 					}
 				}
@@ -169,8 +187,18 @@ if ( ! class_exists( 'Plugin_Name_Admin_Notices' ) ) {
 		 * @since  1.0.0
 		 */
 		public function install_notice() {
-			$install_notice = include_once( 'views/notices/html-notice-install.php' );
-			echo self::the_notice( 'updated', $install_notice );
+			echo self::the_notice( 'updated', sprintf( __( 'Thank you for installing %s <a style="float:right;" href="' . esc_url( wp_nonce_url( add_query_arg( 'plugin-name-hide-notice', 'install' ), 'plugin_name_hide_notices_nonce', '_plugin_name_notice_nonce' ) ). '">%s</a>', 'plugin-name' ), Plugin_Name()->name, __( 'Dismiss Notice', 'plugin-name' ) ) );
+		}
+
+		/**
+		 * If we have just installed the plugin, show a message.
+		 *
+		 * return  string
+		 * @access public
+		 * @since  1.0.0
+		 */
+		public function update_notice() {
+			echo self::the_notice( 'updated', sprintf( __( '<strong>%s Data Update Required</strong> &#8211; We just need to update your install to the latest version. <a href="' . esc_url( add_query_arg( 'do_update_plugin_name', 'true', admin_url() ) ) . '" class="plugin-name-update-now button-primary">' . __( 'Run the updater', 'plugin-name' ) . '</a>', 'plugin-name' ), Plugin_Name()->name ) );
 		}
 
 	} // END Plugin_Name_Admin_Notices class.

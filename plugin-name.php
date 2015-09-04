@@ -93,7 +93,7 @@ if ( ! class_exists( 'Plugin_Name' ) ) {
 		 * @access public
 		 * @since  1.0.0
 		 */
-		public $php_required_min = "5.4.0";
+		public static $php_required_min = "5.4.0";
 
 		/**
 		 * The minimum version of WordPress the plugin requires.
@@ -103,7 +103,7 @@ if ( ! class_exists( 'Plugin_Name' ) ) {
 		 * @access public
 		 * @since  1.0.0
 		 */
-		public $wp_version_min = "4.0";
+		public static $wp_version_min = "4.0";
 
 		/**
 		 * Main PluginName Instance
@@ -332,14 +332,7 @@ if ( ! class_exists( 'Plugin_Name' ) ) {
 } // END class_exists('Plugin_Name')
 
 /**
- * Returns the instance of Plugin_Name to prevent the need to use globals.
- *
- * @return Plugin Name
- * @since  1.0.0
+ * Returns the instance of Plugin_Name to prevent
+ * the need to use globals.
  */
-function Plugin_Name() {
-	return Plugin_Name::instance();
-}
-
-// Run the plugin.
-Plugin_Name();
+return Plugin_Name::instance();

@@ -55,16 +55,17 @@ if ( ! class_exists( 'Plugin_Name_Admin' ) ) {
 		 */
 		public function admin_scripts() {
 			// PluginName Admin Javascript
-			plugin_name_load_file( PLUGIN_NAME_SLUG . '_admin_script', '/admin/assets/js/plugin-name' . PLUGIN_NAME_SCRIPT_MODE . '.js', true, array( 'jquery' ), '1.0.0' );
+			plugin_name_load_file( PLUGIN_NAME_SLUG . '_admin_script', '/includes/admin/assets/js/plugin-name' . PLUGIN_NAME_SCRIPT_MODE . '.js', true, array( 'jquery' ), '1.0.0' );
 
 			// Variables for PluginName Admin JavaScript
 			wp_localize_script( PLUGIN_NAME_SLUG . '_admin_script', 'plugin_name_admin_params', apply_filters( 'plugin_name_admin_params', array(
-				'ajaxurl'    => admin_url('admin-ajax.php'),
-				'plugin_url' => PLUGIN_NAME_URL_PATH,
+				'ajaxurl'              => admin_url('admin-ajax.php'),
+				'plugin_url'           => PLUGIN_NAME_URL_PATH,
+				'backup_before_update' => __( 'It is strongly recommended that you backup your database before proceeding. Are you sure you wish to run the updater now?', 'plugin-name' ),
 			) ) );
 
 			// PluginName Admin Stylesheet
-			plugin_name_load_file( PLUGIN_NAME_SLUG . '_admin_style', '/admin/assets/css/admin/plugin-name.css' );
+			plugin_name_load_file( PLUGIN_NAME_SLUG . '_admin_style', '/includes/admin/assets/css/plugin-name' . PLUGIN_NAME_SCRIPT_MODE . '.css' );
 		} // END admin_scripts()
 
 	} // END class

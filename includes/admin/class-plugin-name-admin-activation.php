@@ -27,7 +27,7 @@ if ( ! class_exists( 'Plugin_Name_Activation' ) ) {
 		public function __construct() {
 			// Fetch the Php version checker.
 			require_once( 'wp-update-php/WPUpdatePhp.php' );
-			$updatePhp = new WPUpdatePhp( Plugin_Name()->php_required_min );
+			$updatePhp = new WPUpdatePhp( Plugin_Name::$php_required_min );
 
 			// If the miniumum version of PHP required is available then install the plugin.
 			if ( $updatePhp->does_it_meet_required_php_version( PHP_VERSION ) ) {
@@ -47,7 +47,6 @@ if ( ! class_exists( 'Plugin_Name_Activation' ) ) {
 		public function run_activation(){
 			include_once( 'class-plugin-name-admin-install.php' );
 			$install_plugin = new Plugin_Name_Install;
-
 			$install_plugin->install();
 		}
 
